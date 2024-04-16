@@ -60,22 +60,6 @@ class PersistentSegmentTree(array: Array<Long>) {
             boundsToBeModified = left.toLong() to right.toLong(),
             upcomingModifier = 0
         )
-        /*fun getValue(root: Node): Long {
-            val boundsToBeModified = left.toLong() to right.toLong()
-            if (!isIntersection(root.bounds, boundsToBeModified)) {
-                return 0
-            }
-
-            countModifier(root)
-            return with(root) {
-                when {
-                    isLeaf() -> root.value
-                    intersect(bounds, boundsToBeModified) == bounds -> root.value
-                    else -> getValue(this.left!!) + getValue(this.right!!)
-                }
-            }
-        }
-        return getValue(stateAt(stateIndex))*/
     }
 
     fun add(left: Int, right: Int, value: Long) {
