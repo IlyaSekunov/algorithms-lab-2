@@ -37,19 +37,19 @@ class PersistentSegmentTree(array: Array<Long>) {
     fun getValue(left: Int, right: Int, stateIndex: Int): Long {
         fun getValue(
             currentNode: Node,
-            boundsToBeModified: Pair<Long, Long>,
+            requestedBounds: Pair<Long, Long>,
             upcomingModifier: Long
         ): Long = with(currentNode) {
             when {
-                !isIntersection(bounds, boundsToBeModified) -> 0
-                intersect(bounds, boundsToBeModified) == bounds -> countValue(upcomingModifier)
+                !isIntersection(bounds, requestedBounds) -> 0
+                intersect(bounds, requestedBounds) == bounds -> countValue(upcomingModifier)
                 else -> getValue(
                     currentNode = this.left!!,
-                    boundsToBeModified = boundsToBeModified,
+                    requestedBounds = requestedBounds,
                     upcomingModifier = modifier + upcomingModifier
                 ) + getValue(
                     currentNode = this.right!!,
-                    boundsToBeModified = boundsToBeModified,
+                    requestedBounds = requestedBounds,
                     upcomingModifier = modifier + upcomingModifier
                 )
             }
@@ -57,7 +57,7 @@ class PersistentSegmentTree(array: Array<Long>) {
 
         return getValue(
             currentNode = stateAt(stateIndex),
-            boundsToBeModified = left.toLong() to right.toLong(),
+            requestedBounds = left.toLong() to right.toLong(),
             upcomingModifier = 0
         )
     }
