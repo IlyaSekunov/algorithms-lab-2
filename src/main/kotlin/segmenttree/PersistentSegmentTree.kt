@@ -30,7 +30,7 @@ class PersistentSegmentTree(array: Array<Long>) {
     }
 
     private fun Node.countValue(upcomingModifier: Long) =
-        value * (modifier + upcomingModifier) * (bounds.second - bounds.first + 1)
+        value + (modifier + upcomingModifier) * (bounds.second - bounds.first + 1)
 
     fun lastState() = trees.last()
 
