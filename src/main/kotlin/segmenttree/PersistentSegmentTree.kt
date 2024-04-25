@@ -71,8 +71,6 @@ class PersistentSegmentTree(array: Array<Long>) {
             val newNode = root.copy()
             return newNode.apply {
                 if (modifier != 0L) {
-                    copyLeft()
-                    copyRight()
                     countModifier()
                 }
 
