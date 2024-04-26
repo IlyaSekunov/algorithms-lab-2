@@ -30,6 +30,8 @@ fun testAlgorithm(
     testsCount: Int,
     algorithm: () -> Unit
 ): List<Long> = ArrayList<Long>(testsCount).apply {
-    val result = measureTimeMillis { algorithm() }
-    add(result)
+    repeat(testsCount) {
+        val result = measureTimeMillis(algorithm)
+        add(result)
+    }
 }
