@@ -11,6 +11,9 @@ fun persistentSegmentTreeAlgorithm(
     rectangles: List<Rectangle>,
     points: List<Point>
 ): Array<Long> {
+    if (rectangles.isEmpty()) {
+        return Array(points.size) { 0L }
+    }
     val uniqueYCoordinates = getUniqueCoordinates(rectangles) { y }
     val modifications = getModifications(rectangles)
     val uniqueXCoordinates = modifications.map { it.key }
